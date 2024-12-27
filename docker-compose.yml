@@ -1,0 +1,11 @@
+services:
+  hospital_ship:
+    build:
+      context: ./lib/Medico/test  # Directorio donde está el Dockerfile
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./lib:/lib  # Monta todo el directorio 'lib' para acceso completo
+    environment:
+      - PYTHONPATH=/lib/Medico  # Ajusta la ruta de PYTHONPATH
