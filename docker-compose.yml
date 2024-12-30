@@ -1,11 +1,16 @@
 services:
-  hospital_ship:
+  medico:
     build:
-      context: ./lib/Medico/test  # Directorio donde está el Dockerfile
-      dockerfile: Dockerfile
+      context: ./lib/Medicos  # Directorio que contiene el Dockerfile
+      dockerfile: Dockerfile  # Nombre del archivo Dockerfile
     ports:
-      - "8000:8000"
-    volumes:
-      - ./lib:/lib  # Monta todo el directorio 'lib' para acceso completo
-    environment:
-      - PYTHONPATH=/lib/Medico  # Ajusta la ruta de PYTHONPATH
+      - "3700:3700"  # Puerto del host mapeado al contenedor
+    container_name: medicos_service
+
+  pacientes:
+    build:
+      context: ./lib/Pacientes  # Directorio que contiene el Dockerfile
+      dockerfile: Dockerfile  # Nombre del archivo Dockerfile
+    ports:
+      - "3701:3701"  # Puerto del host mapeado al contenedor
+    container_name: pacientes_service
