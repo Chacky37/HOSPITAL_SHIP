@@ -5,7 +5,7 @@ FROM python:3.8-slim
 WORKDIR /app
 
 # Copia los archivos de requisitos
-COPY lib/Pacientes/requirements.txt .
+COPY requirements.txt .
 
 # Instala las dependencias necesarias
 RUN pip install --no-cache-dir -r requirements.txt

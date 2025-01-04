@@ -1,12 +1,12 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
+from lib.Medicos.app.Routers import  medico_router, speciality_router
 
-app = FastAPI()
+app = FastAPI(
+    title="Medicos API",
+    description="API para gestionar médicos y especialidades",
+    version="1.0.0",
+)
 
-app.title = "Proyecto Final Prt. 2"
-app.version = "1.1.2"
-
-@app.get("/", tags=["Bienvenido"])
-def Bienvenida():
-    return "Bienvenido My Lord"
-
-
+# Incluimos los routers
+app.include_router(medico_router.router)
+#app.include_router(speciality_router.router)

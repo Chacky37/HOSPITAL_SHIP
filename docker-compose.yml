@@ -1,16 +1,26 @@
+
 services:
-  medico:
+  medicos:
+    image: hospital_ship_medicos
+    container_name: medico_container
     build:
-      context: ./lib/Medicos  # Directorio que contiene el Dockerfile
-      dockerfile: Dockerfile  # Nombre del archivo Dockerfile
+      context: ./lib/Medicos
+    volumes:
+      - ./lib:/app/lib  # Monta el paquete completo
     ports:
       - "3700:3700"  # Puerto del host mapeado al contenedor
-    container_name: medicos_service
+    environment:
+      - VARIABLE=valor
 
+      
   pacientes:
+    image: hospital_ship_pacientes
+    container_name: pacientes_container
     build:
-      context: ./lib/Pacientes  # Directorio que contiene el Dockerfile
-      dockerfile: Dockerfile  # Nombre del archivo Dockerfile
+      context: ./lib/Pacientes
+    volumes:
+      - ./lib:/app/lib  # Monta el paquete completo
     ports:
       - "3701:3701"  # Puerto del host mapeado al contenedor
-    container_name: pacientes_service
+    environment:
+      - VARIABLE=valor
