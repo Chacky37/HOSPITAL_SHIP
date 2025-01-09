@@ -1,18 +1,18 @@
 from sqlalchemy.exc import SQLAlchemyError
 from fastapi import HTTPException, status
-from lib.Medicos.config.Base_Mysql import conx
-from lib.Medicos.app.Models.medico_models import medico
+from lib.Pacientes.config.Base_Mysql import conx
+from lib.Pacientes.app.Models.paciente_models import enlace_paciente
 
-class Mysql_Medico:
+class Mysql_Paciente:
     
-    def insert_medico(self, medico_data):
+    def insert_paciente(self, paciente_data):
         try:
             #conx = next(get_db())
 
             # Intentar insertar el nuevo médico en la base de datos
-            conx.execute(medico.insert().values(medico_data))
+            conx.execute(enlace_paciente.insert().values(paciente_data))
             conx.commit()
-            return medico_data
+            return paciente_data
         
         except SQLAlchemyError as e:
             # Manejar errores de la base de datos

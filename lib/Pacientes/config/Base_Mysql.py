@@ -4,11 +4,10 @@ from sqlalchemy import create_engine, MetaData
 environment = os.getenv("ENVIRONMENT", "local")
 
 if environment == "docker":
-    DATABASE_URL = "mysql+pymysql://medicos_user:medicos_pass@mysql_medicos:3306/Medicos_DB"
+    DATABASE_URL = "mysql+pymysql://pacientes_user:pacientes_pass@mysql_pacientes:3306/Pacientes_DB"
 else:
-    DATABASE_URL = "mysql+pymysql://medicos_user:medicos_pass@localhost:3500/Medicos_DB"
+    DATABASE_URL = "mysql+pymysql://pacientes_user:pacientes_pass@127.0.0.1:3600/Pacientes_DB"
 
 engine = create_engine(DATABASE_URL)
-
 conx = engine.connect()
 meta_data = MetaData()

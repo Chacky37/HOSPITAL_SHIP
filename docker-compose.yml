@@ -40,6 +40,7 @@ services:
     volumes:
       - ./lib:/app/lib
     environment:
+      - ENVIRONMENT=docker
       - DATABASE_URL=mysql+pymysql://medicos_user:medicos_pass@mysql_medicos:3306/Medicos_DB
     depends_on:
       - mysql_medicos
@@ -56,6 +57,7 @@ services:
     volumes:
       - ./lib:/app/lib
     environment:
+      - ENVIRONMENT=docker
       - DATABASE_URL=mysql+pymysql://pacientes_user:pacientes_pass@mysql_pacientes:3306/Pacientes_DB
     depends_on:
       - mysql_pacientes
