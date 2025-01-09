@@ -1,20 +1,7 @@
+import os
 from sqlalchemy import create_engine, MetaData
-from sqlalchemy.orm import sessionmaker
 
-# Configurar el motor de base de datos
-DATABASE_URL = "mysql+pymysql://root:saul123@localhost:3306/Users_Medicos"
+DATABASE_URL = os.getenv("DATABASE_URL", "mysql+pymysql://medicos_user:medicos_pass@mysql_medicos:3306/Medicos_DB")
 engine = create_engine(DATABASE_URL)
-
-# Crear una sesión local
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-
-# Crear metadatos
+conx = engine.connect()
 meta_data = MetaData()
-
-# Dependencia para obtener la sesión en FastAPI
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db  # ✅ Cede la sesión para ser usada
-    finally:
-        db.close()  # ✅ Cierra la sesión después de cada solicitud

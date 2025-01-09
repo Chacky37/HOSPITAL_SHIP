@@ -1,26 +1,74 @@
 
 services:
+  mysql_medicos:
+    image: mysql:8.0.40-debian
+    container_name: mysql_medicos_container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: saul123
+      MYSQL_DATABASE: Medicos_DB
+      MYSQL_USER: medicos_user
+      MYSQL_PASSWORD: medicos_pass
+    ports:
+      - "3500:3306"
+    networks:
+      - hospital_network
+    volumes:
+      - mysql_medicos_data:/var/lib/mysql
+
+  mysql_pacientes:
+    image: mysql:8.0.40-debian
+    container_name: mysql_pacientes_container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: saul123
+      MYSQL_DATABASE: Pacientes_DB
+      MYSQL_USER: pacientes_user
+      MYSQL_PASSWORD: pacientes_pass
+    ports:
+      - "3600:3306"
+    networks:
+      - hospital_network
+    volumes:
+      - mysql_pacientes_data:/var/lib/mysql
+
   medicos:
     image: hospital_ship_medicos
     container_name: medico_container
     build:
       context: ./lib/Medicos
     volumes:
-      - ./lib:/app/lib  # Monta el paquete completo
-    ports:
-      - "3700:3700"  # Puerto del host mapeado al contenedor
+      - ./lib:/app/lib
     environment:
-      - VARIABLE=valor
+      - DATABASE_URL=mysql+pymysql://medicos_user:medicos_pass@mysql_medicos:3306/Medicos_DB
+    depends_on:
+      - mysql_medicos
+    ports:
+      - "3700:3700"
+    networks:
+      - hospital_network
 
-      
   pacientes:
     image: hospital_ship_pacientes
     container_name: pacientes_container
     build:
       context: ./lib/Pacientes
     volumes:
-      - ./lib:/app/lib  # Monta el paquete completo
-    ports:
-      - "3701:3701"  # Puerto del host mapeado al contenedor
+      - ./lib:/app/lib
     environment:
-      - VARIABLE=valor
+      - DATABASE_URL=mysql+pymysql://pacientes_user:pacientes_pass@mysql_pacientes:3306/Pacientes_DB
+    depends_on:
+      - mysql_pacientes
+    ports:
+      - "3701:3701"
+    networks:
+      - hospital_network
+
+volumes:
+  mysql_medicos_data:
+  mysql_pacientes_data:
+
+networks:
+  hospital_network:
+    driver: bridge
+  
