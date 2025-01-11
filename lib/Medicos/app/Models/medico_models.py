@@ -4,10 +4,11 @@ from lib.Medicos.config.Base_Mysql import engine, meta_data
 
 # Example table definition
 medico = Table(
-    "medicos", meta_data,
+    "Medicos", meta_data,
     Column("id", Integer, primary_key=True),
     Column("name", String(15)),
-    Column("specialty", String(20))
+    Column("specialty", String(20)),
+    Column("contraseña", String(20))
 )
 
 # Create the table in the database

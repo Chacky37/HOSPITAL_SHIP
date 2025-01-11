@@ -5,3 +5,4 @@ class MedicoSchema(BaseModel):
     id: int
     name: str
     specialty: Optional[str]
+    contraseña: int
