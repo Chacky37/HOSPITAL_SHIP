@@ -18,4 +18,3 @@ EXPOSE 3700
 
 # Comando para ejecutar la aplicación
 CMD ["uvicorn", "lib.Medicos.run:app", "--host", "0.0.0.0", "--port", "3700", "--reload"]
-

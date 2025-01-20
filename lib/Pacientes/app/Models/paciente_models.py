@@ -4,10 +4,11 @@ from lib.Pacientes.config.Base_Mysql import engine, meta_data
 
 # Example table definition
 enlace_paciente = Table(
-    "pacientes", meta_data,
+    "pacientes",
+    meta_data,
     Column("cedula", Integer, primary_key=True),
     Column("nombre", String(15)),
-    Column("edad", Integer)
+    Column("edad", Integer),
 )
 
 # Create the table in the database

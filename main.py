@@ -11,4 +11,4 @@ app = FastAPI(
 
 # Montar las sub-APIs
 app.mount("/medicos", medico_app)
-#app.mount("/pacientes", paciente_app)
+# app.mount("/pacientes", paciente_app)

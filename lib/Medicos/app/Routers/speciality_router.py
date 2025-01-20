@@ -5,6 +5,7 @@ router = APIRouter(
     tags=["Specialities"],
 )
 
+
 # Endpoint para obtener especialidades
 @router.get("/")
 async def get_specialities():

@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from lib.Medicos.app.Routers import  medico_router, speciality_router
+from lib.Medicos.app.Routers import medico_router, speciality_router
 
 app = FastAPI(
     title="Medicos API",
@@ -9,4 +9,4 @@ app = FastAPI(
 
 # Incluimos los routers
 app.include_router(medico_router.router)
-#app.include_router(speciality_router.router)
+# app.include_router(speciality_router.router)

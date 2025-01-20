@@ -1,8 +1,12 @@
 from pydantic import BaseModel
 from typing import Optional
 
+
 class MedicoSchema(BaseModel):
-    id: int
-    name: str
-    specialty: Optional[str]
-    contraseña: int
+    Cedula: int
+    Primer_Nombre: str
+    Segundo_Nombre: Optional[str]
+    Primer_Apellido: str
+    Segundo_Apellido: Optional[str]
+    Especialidad: str
+    Contraseña: str

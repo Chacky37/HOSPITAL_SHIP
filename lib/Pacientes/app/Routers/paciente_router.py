@@ -10,10 +10,12 @@ router = APIRouter(
 # Instancia de la clase ControllerEndpoints
 medico_controllers = ControllerEndpoints()
 
+
 # Endpoint para obtener la lista de doctores
 @router.get("/api/list")
 def get_doctors():
     return ["BIENVENIDO MY LORD PACIENTE"]
+
 
 @router.post("/api/pacientes")
 def Register_Medico(enfermo: PacienteSchema):
@@ -24,5 +26,5 @@ def Register_Medico(enfermo: PacienteSchema):
         # Manejar cualquier otro error
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail=f"Error inesperado: {str(e)}"
+            detail=f"Error inesperado: {str(e)}",
         )
