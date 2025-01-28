@@ -2,6 +2,6 @@ from pydantic import BaseModel
 
 
 class PacienteSchema(BaseModel):
-    cedula: int
-    nombre: str
-    edad: int
+    Cedula: int
+    Nombre: str
+    Edad: int

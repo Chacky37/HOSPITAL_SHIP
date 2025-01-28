@@ -10,5 +10,5 @@ else:
     )
 
 engine = create_engine(DATABASE_URL)
-conx = engine.connect()
+
 meta_data = MetaData()

@@ -19,9 +19,9 @@ def Bienvenida():
 
 
 @router.post("/api/medico", status_code=status.HTTP_201_CREATED)
-def Registrar_Medico(doctor: MedicoSchema):
+def Registrar_Medico(data_medico: MedicoSchema):
     try:
-        medico_controllers.Insertar_Medico_Controllers(doctor)
+        medico_controllers.Insertar_Medico_Controllers(data_medico)
         return Response(status_code=status.HTTP_201_CREATED)
     except Exception as e:
         # Manejar cualquier otro error
